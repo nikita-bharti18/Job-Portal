@@ -16,3 +16,4 @@ public class ApplicationResponse {
     private String status;
 
 }
+
