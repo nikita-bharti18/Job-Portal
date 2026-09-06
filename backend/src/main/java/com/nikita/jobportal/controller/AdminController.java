@@ -61,3 +61,23 @@ public class AdminController {
         );
     }
 }
+
+@GetMapping("/users")
+public ResponseEntity<List<UserResponse>>
+getAllUsers() {
+
+    List<UserResponse> users =
+            userRepository.findAll()
+                    .stream()
+                    .map(user ->
+                            new UserResponse(
+                                    user.getId(),
+                                    user.getName(),
+                                    user.getEmail(),
+                                    user.getRole().getName()
+                            )
+                    )
+                    .toList();
+
+    return ResponseEntity.ok(users);
+}
